@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>پرناز افشارنیا | طراح سایت</title>
+<meta name="description" content="صفحه معرفی و نمونه‌کارهای پرناز افشارنیا، طراح سایت">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#04140d;--forest:#0a2e1f;--jade:#17a673;--mint:#7dffc4;--lime:#d4ff8a;--pearl:#eafff4;
+  --glass:rgba(125,255,196,.07);--line:rgba(125,255,196,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;font-family:"Vazirmatn",Tahoma,sans-serif;color:var(--pearl);line-height:1.9;
+  background:
+    radial-gradient(ellipse at 80% 0%,#0f5a3d 0%,transparent 55%),
+    radial-gradient(ellipse at 10% 100%,#0b3d2a 0%,transparent 50%),
+    linear-gradient(180deg,var(--forest),var(--night));
+  background-attachment:fixed;overflow-x:hidden;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+section[id],footer{scroll-margin-top:84px}
+
+/* ===== پس‌زمینه متحرک (CSS خالص) ===== */
+.magic{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.fly{position:absolute;bottom:-24px;left:var(--x);width:var(--s);height:var(--s);border-radius:50%;
+  background:radial-gradient(circle,#f3ffc4 0%,#7dffc4 40%,transparent 72%);
+  box-shadow:0 0 14px 5px rgba(125,255,196,.55);
+  animation:flyUp var(--d) linear var(--dl) infinite,blink var(--b) ease-in-out var(--dl) infinite}
+@keyframes flyUp{0%{transform:translate(0,0)}25%{transform:translate(28px,-28vh)}50%{transform:translate(-22px,-56vh)}75%{transform:translate(26px,-84vh)}100%{transform:translate(-10px,-112vh)}}
+@keyframes blink{0%,100%{opacity:.15}50%{opacity:1}}
+.petal{position:absolute;top:-30px;left:var(--x);width:var(--s);height:calc(var(--s)*1.5);
+  background:linear-gradient(135deg,rgba(125,255,196,.75),rgba(23,166,115,.5));border-radius:0 100% 0 100%;
+  animation:fall var(--d) linear var(--dl) infinite}
+@keyframes fall{0%{transform:translate(0,0) rotate(0)}33%{transform:translate(40px,38vh) rotate(120deg)}66%{transform:translate(-30px,76vh) rotate(240deg)}100%{transform:translate(20px,115vh) rotate(360deg)}}
+.moon{position:fixed;top:8vh;left:6vw;width:clamp(60px,10vw,120px);aspect-ratio:1;border-radius:50%;z-index:0;
+  background:radial-gradient(circle at 35% 35%,#f6ffd9,var(--lime) 55%,#9bd65a);
+  box-shadow:0 0 60px 20px rgba(212,255,138,.3),0 0 160px 60px rgba(125,255,196,.15);
+  animation:moonPulse 6s ease-in-out infinite;pointer-events:none}
+@keyframes moonPulse{50%{box-shadow:0 0 80px 30px rgba(212,255,138,.45),0 0 200px 80px rgba(125,255,196,.22);transform:translateY(-6px)}}
+.mist{position:fixed;left:-20%;width:140%;height:40vh;pointer-events:none;z-index:0;filter:blur(20px);
+  background:radial-gradient(ellipse at center,rgba(125,255,196,.12),transparent 65%);bottom:-8vh;animation:drift 22s linear infinite alternate}
+@keyframes drift{from{transform:translateX(-6%)}to{transform:translateX(6%)}}
+
+/* ===== هدر و منو ===== */
+header{
+  position:sticky;top:0;z-index:20;
+  background:rgba(4,20,13,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.bar{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;font-size:1.2rem}
+.logo b{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#04301f;
+  background:radial-gradient(circle at 30% 30%,var(--lime),var(--jade));box-shadow:0 0 16px rgba(125,255,196,.6)}
+.logo span{background:linear-gradient(100deg,var(--mint),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav ul{list-style:none;display:flex;gap:6px}
+nav a{display:block;text-decoration:none;padding:8px 16px;border-radius:999px;font-weight:500;transition:background .3s,color .3s,box-shadow .3s}
+nav a:hover{background:var(--glass);box-shadow:inset 0 0 0 1px var(--line);color:var(--mint)}
+nav a.cta{background:linear-gradient(120deg,var(--jade),#3de8a4);color:#04301f;font-weight:800}
+#menu-toggle{display:none}
+.burger{display:none;cursor:pointer;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass);
+  place-items:center;font-size:1.4rem}
+@media (max-width:760px){
+  .burger{display:grid}
+  nav{position:absolute;top:100%;left:0;right:0;background:rgba(4,20,13,.96);border-bottom:1px solid var(--line);
+    max-height:0;overflow:hidden;transition:max-height .4s ease}
+  nav ul{flex-direction:column;padding:8px 20px 18px}
+  #menu-toggle:checked ~ nav{max-height:340px}
+}
+
+/* ===== عمومی ===== */
+.wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 20px}
+.grad{background:linear-gradient(100deg,var(--mint),var(--lime),#3de8a4,var(--mint));background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:-300% 0}}
+@keyframes rise{from{opacity:0;transform:translateY(28px);filter:blur(8px)}}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:22px 6px 22px 6px;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.sec-title{font-size:clamp(1.7rem,5vw,2.4rem);font-weight:900;text-align:center;margin-bottom:10px;filter:drop-shadow(0 0 18px rgba(125,255,196,.35))}
+.sec-sub{text-align:center;max-width:34em;margin:0 auto 36px;color:rgba(234,255,244,.8)}
+
+/* ===== هیرو ===== */
+.hero{position:relative;z-index:2;padding:clamp(40px,8vh,90px) 0 40px}
+.hero-grid{display:grid;gap:34px;align-items:center;grid-template-columns:1fr}
+.avatar{position:relative;width:min(260px,64vw);aspect-ratio:1;margin:0 auto;border-radius:50%;padding:6px;
+  background:conic-gradient(from 0deg,var(--mint),var(--lime),var(--jade),var(--mint));
+  animation:spin 8s linear infinite,rise 1.2s both;
+  box-shadow:0 0 50px rgba(125,255,196,.5),0 0 120px rgba(23,166,115,.35)}
+@keyframes spin{to{filter:hue-rotate(40deg)}}
+.avatar-in{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 30% 30%,#14634a,#06241a)}
+.avatar-in::before{content:"پ";position:absolute;inset:0;display:grid;place-items:center;font-size:6rem;font-weight:900;color:rgba(125,255,196,.55)}
+/* عکس: فایل profile.jpg رو کنار همین فایل بذار */
+.photo{position:absolute;inset:0;background:url("profile.jpg") 0% 43%/240% auto no-repeat}
+.hello{font-size:.95rem;color:var(--mint);font-weight:800;letter-spacing:.04em;animation:rise 1s .1s both}
+.h1{font-size:clamp(2.2rem,8vw,4rem);font-weight:900;line-height:1.35;margin:4px 0 6px;filter:drop-shadow(0 0 22px rgba(125,255,196,.4));animation:rise 1.2s .15s both}
+.role{font-weight:800;font-size:1.1rem;color:var(--lime);animation:rise 1.2s .25s both}
+.intro{margin-top:16px;padding:18px 20px;font-size:1.08rem;line-height:2.1;color:#fff;
+  background:rgba(3,22,14,.6);text-shadow:0 2px 12px rgba(0,0,0,.55);animation:rise 1.2s .35s both}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;animation:rise 1.2s .55s both}
+.btn{display:inline-block;text-decoration:none;font-weight:800;padding:12px 26px;border-radius:999px;border:1px solid var(--mint);
+  transition:transform .3s,box-shadow .3s}
+.btn.main{background:linear-gradient(120deg,var(--lime),var(--mint));color:#04301f;box-shadow:0 8px 26px -6px rgba(61,232,164,.7)}
+.btn.ghost{background:var(--glass)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 34px -6px rgba(61,232,164,.8)}
+@media (min-width:860px){
+  .hero-grid{grid-template-columns:auto 1fr;gap:56px}
+  .avatar{width:300px}
+}
+
+/* ===== ویدیو ===== */
+.video{margin:56px auto 0;max-width:760px;text-align:center}
+.video h2{font-size:1.3rem;font-weight:800;margin-bottom:6px}
+.video p{color:rgba(234,255,244,.75);margin-bottom:18px}
+.frame{padding:10px;border-radius:26px 8px 26px 8px;border:1px solid var(--mint);background:rgba(3,22,14,.55);
+  box-shadow:0 0 40px rgba(61,232,164,.35),inset 0 0 20px rgba(125,255,196,.08)}
+.vfall{margin-top:14px;font-size:.92rem;color:rgba(234,255,244,.75)}
+.vfall a{color:var(--mint);font-weight:800}
+.h_iframe-aparat_embed_frame{position:relative;border-radius:16px;overflow:hidden}
+.h_iframe-aparat_embed_frame .ratio{display:block;width:100%;height:auto}
+.h_iframe-aparat_embed_frame iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+
+/* ===== تجربیات ===== */
+.exp{position:relative;z-index:2;padding:90px 0 40px}
+.cards{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:700px){.cards{grid-template-columns:1fr 1fr}}
+.card{padding:22px;transition:transform .35s,border-color .3s,box-shadow .3s,border-radius .4s}
+.card:hover{transform:translateY(-5px);border-color:var(--mint);border-radius:6px 22px 6px 22px;box-shadow:0 12px 40px -10px rgba(61,232,164,.6)}
+.card .ic{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-size:1.4rem;margin-bottom:12px;
+  background:radial-gradient(circle at 30% 30%,var(--lime),var(--jade));box-shadow:0 0 18px rgba(125,255,196,.5)}
+.card h3{font-size:1.1rem;font-weight:800;margin-bottom:4px;color:var(--mint)}
+.card p{color:rgba(234,255,244,.85);font-size:.97rem}
+.quote{margin:20px auto 0;max-width:720px;padding:22px 24px;text-align:center;font-size:1.05rem;
+  background:linear-gradient(120deg,rgba(23,166,115,.35),rgba(125,255,196,.12));border:1px solid var(--mint);border-radius:22px 6px 22px 6px}
+.quote b{color:var(--lime)}
+.go-works{text-align:center;margin-top:34px}
+.go-works .btn{font-size:1.1rem;padding:16px 38px}
+
+/* ===== فوتر ===== */
+footer{position:relative;z-index:2;margin-top:70px;border-top:1px solid var(--line);
+  background:linear-gradient(180deg,transparent,rgba(3,22,14,.85))}
+.foot{max-width:1100px;margin:0 auto;padding:36px 20px 26px;display:grid;gap:22px;text-align:center}
+.foot-links{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px}
+.foot-links a{text-decoration:none;color:rgba(234,255,244,.8)}
+.foot-links a:hover{color:var(--mint)}
+.foot small{color:rgba(234,255,244,.6)}
+
+/* ظاهر شدن آرام با اسکرول (اگه مرورگر پشتیبانی نکنه، همه‌چیز عادی دیده می‌شه) */
+@supports (animation-timeline:view()){
+  .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+}
+@media (prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+  <div class="magic" aria-hidden="true">
+    <i class="fly" style="--x:44.9%;--s:6.8px;--d:19.2s;--dl:-9.3s;--b:3.5s"></i>
+    <i class="fly" style="--x:58.0%;--s:4.9px;--d:14.6s;--dl:-12.6s;--b:4.4s"></i>
+    <i class="fly" style="--x:10.1%;--s:5.5px;--d:10.0s;--dl:-16.2s;--b:4.1s"></i>
+    <i class="fly" style="--x:5.1%;--s:8.9px;--d:19.6s;--dl:-13.1s;--b:3.8s"></i>
+    <i class="fly" style="--x:16.3%;--s:4.1px;--d:14.8s;--dl:-1.2s;--b:2.6s"></i>
+    <i class="fly" style="--x:24.5%;--s:4.2px;--d:14.1s;--dl:-8.8s;--b:4.5s"></i>
+    <i class="fly" style="--x:51.4%;--s:7.2px;--d:14.5s;--dl:-13.2s;--b:3.4s"></i>
+    <i class="fly" style="--x:28.0%;--s:9.0px;--d:20.0s;--dl:-16.8s;--b:4.1s"></i>
+    <i class="fly" style="--x:31.6%;--s:5.1px;--d:12.2s;--dl:-1.4s;--b:4.3s"></i>
+    <i class="fly" style="--x:39.8%;--s:8.2px;--d:13.3s;--dl:-19.2s;--b:4.5s"></i>
+    <i class="fly" style="--x:1.1%;--s:5.0px;--d:19.0s;--dl:-9.4s;--b:4.9s"></i>
+    <i class="fly" style="--x:39.6%;--s:4.4px;--d:15.9s;--dl:-15.6s;--b:2.8s"></i>
+    <i class="petal" style="--x:68.0%;--s:12px;--d:13.7s;--dl:-0.8s"></i>
+    <i class="petal" style="--x:2.7%;--s:14px;--d:20.4s;--dl:-23.1s"></i>
+    <i class="petal" style="--x:3.1%;--s:12px;--d:17.8s;--dl:-17.5s"></i>
+    <i class="petal" style="--x:31.9%;--s:15px;--d:12.9s;--dl:-13.1s"></i>
+    <i class="petal" style="--x:72.5%;--s:14px;--d:20.8s;--dl:-16.9s"></i>
+    <i class="petal" style="--x:77.9%;--s:14px;--d:16.2s;--dl:-16.4s"></i>
+  </div>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="mist" aria-hidden="true"></div>
+
+  <header>
+    <div class="bar">
+      <a class="logo" href="#home"><b>پ</b><span>معرفی من</span></a>
+      <input type="checkbox" id="menu-toggle" aria-hidden="true">
+      <label class="burger" for="menu-toggle" aria-label="باز و بسته کردن منو">☰</label>
+      <nav aria-label="منوی اصلی">
+        <ul>
+          <li><a href="#home">خانه</a></li>
+          <li><a href="#video">ویدیو معرفی</a></li>
+          <li><a href="#experience">تجربیات من</a></li>
+          <li><a class="cta" href="portfolio-all-in-one.html">نمونه‌کارها</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= هیرو ================= -->
+    <section class="hero" id="home">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="avatar" role="img" aria-label="عکس پرناز افشارنیا">
+            <div class="avatar-in"><div class="photo"></div></div>
+          </div>
+
+          <div>
+            <p class="hello">✦ سلام، خوش اومدی</p>
+            <h1 class="h1 grad">من پرناز افشارنیا هستم</h1>
+            <p class="role">طراح سایت</p>
+            <p class="intro glass">
+              طراحی سایت رو انتخاب کردم تا بتونم نیازها رو برطرف کنم، کارها رو
+              آسون‌تر کنم و چیزهایی رو که ارزش دیده شدن دارن به نمایش بذارم.
+              این‌جا می‌تونی منو بیشتر بشناسی و ببینی توی این چند ماه چی ساختم.
+            </p>
+            <div class="btns">
+              <a class="btn main" href="portfolio-all-in-one.html">دیدن نمونه‌کارها</a>
+              <a class="btn ghost" href="#experience">تجربیات من</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ویدیو، وسط هیرو و زیر توضیحات -->
+        <div class="video reveal" id="video">
+          <h2 class="grad">ویدیوی معرفی</h2>
+          <p>یه نگاه سریع به کارهام و مسیری که تا الان اومدم</p>
+          <div class="frame">
+            <div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe src="https://www.aparat.com/video/video/embed/videohash/dkmxs78/vt/frame" allow="fullscreen; autoplay" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" loading="lazy" title="ویدیوی معرفی"></iframe></div>
+          </div>
+          <p class="vfall">اگه ویدیو پخش نشد، <a href="https://www.aparat.com/v/dkmxs78" target="_blank" rel="noopener">این‌جا توی آپارات ببینش</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= تجربیات ================= -->
+    <section class="exp" id="experience">
+      <div class="wrap">
+        <h2 class="sec-title grad reveal">تجربیات من</h2>
+        <p class="sec-sub reveal">حدود سه ماه از شروع مسیرم می‌گذره. این‌ها چیزهایی هستن که توی این مدت یاد گرفتم و باهاشون روبه‌رو شدم.</p>
+
+        <div class="cards">
+          <article class="card glass reveal">
+            <div class="ic">🌱</div>
+            <h3>شروع مسیر</h3>
+            <p>حدود سه ماهه که توی کلاس طراحی سایت شرکت می‌کنم و قدم‌به‌قدم جلو می‌رم.</p>
+          </article>
+          <article class="card glass reveal">
+            <div class="ic">🤖</div>
+            <h3>کار با هوش مصنوعی</h3>
+            <p>یاد گرفتم با AI کار کنم و کدهای HTML، CSS و جاوااسکریپت بگیرم و اصطلاحات مورد نیازم رو بشناسم.</p>
+          </article>
+          <article class="card glass reveal">
+            <div class="ic">🧩</div>
+            <h3>ساخت سکشن‌های سایت</h3>
+            <p>سکشن‌های مختلف یه سایت رو ساختم و یاد گرفتم جزئیات کار چقدر مهمه.</p>
+          </article>
+          <article class="card glass reveal">
+            <div class="ic">🛠️</div>
+            <h3>چالش‌ها</h3>
+            <p>بزرگ‌ترین چالش‌هام اجرا شدن درست سایت و پیدا کردن و رفع اشکال‌های کد بود.</p>
+          </article>
+        </div>
+
+        <div class="quote reveal">
+          <b>چرا تم انیمه‌ای؟</b><br>
+          چون باعث آرامش و لذت بردن کاربر حین استفاده از سایت می‌شه.
+        </div>
+
+        <div class="go-works reveal">
+          <a class="btn main" href="portfolio-all-in-one.html">همه‌ی نمونه‌کارهای من ←</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= فوتر ================= -->
+  <footer>
+    <div class="foot">
+      <a class="logo" href="#home" style="justify-content:center"><b>پ</b><span>پرناز افشارنیا</span></a>
+      <ul class="foot-links">
+        <li><a href="#home">خانه</a></li>
+        <li><a href="#video">ویدیو معرفی</a></li>
+        <li><a href="#experience">تجربیات من</a></li>
+        <li><a href="portfolio-all-in-one.html">نمونه‌کارها</a></li>
+      </ul>
+      <small>© ۱۴۰۵ پرناز افشارنیا | ساخته‌شده با ❤ و کلی رنگ سبز</small>
+    </div>
+  </footer>
+
+</body>
+</html>
